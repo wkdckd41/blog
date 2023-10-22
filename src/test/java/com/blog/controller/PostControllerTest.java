@@ -20,8 +20,11 @@ class PostControllerTest {
     @Test
     @DisplayName("/posts 요청시 Hello World를 출력한다.")
     void test() throws Exception {
+        // 글 제목
+        // 글 내용
+
         // expected
-        mockMvc.perform(get("/posts"))
+        mockMvc.perform(get("/posts")) // application/json
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello World"))
                 .andDo(print());
