@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -24,11 +24,12 @@ class PostControllerTest {
         // 글 내용
 
         // expected
-        mockMvc.perform(get("/posts")) // application/json
+        mockMvc.perform(post("/posts")
+                        .content("{\"title\":\"제목입니다.\", \"content\": \"내용입니다.\"}")
+                )
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello World"))
                 .andDo(print());
-
     }
 
 }
