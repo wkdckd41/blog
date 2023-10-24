@@ -1,23 +1,20 @@
 package com.blog.request;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.validation.constraints.NotBlank;
+
+@Setter
+@Getter
+@ToString
 public class PostCreate {
 
-    public String title;
-    public String content;
+    @NotBlank
+    private String title;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    @NotBlank
+    private String content;
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    @Override
-    public String toString() {
-        return "PostCreate{" +
-                "title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                '}';
-    }
 }
