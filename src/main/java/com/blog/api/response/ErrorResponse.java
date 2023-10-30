@@ -1,4 +1,4 @@
-package com.blog.response;
+package com.blog.api.response;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

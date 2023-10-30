@@ -1,6 +1,6 @@
-package com.blog.controller;
+package com.blog.api.controller;
 
-import com.blog.response.ErrorResponse;
+import com.blog.api.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
