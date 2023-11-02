@@ -14,14 +14,12 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public Long write(PostCreate postCreate) {
+    public void write(PostCreate postCreate) {
         Post post = Post.builder()
                 .title(postCreate.getTitle())
                 .content(postCreate.getContent())
                 .build();
 
         postRepository.save(post);
-
-        return post.getId();
     }
 }
