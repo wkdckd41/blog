@@ -39,7 +39,7 @@ class PostControllerTest {
     }
 
     @Test
-    @DisplayName("/posts 요청시 Hello World를 출력한다.")
+    @DisplayName("/posts 요청시 Hello World 를 출력한다.")
     void test() throws Exception {
         // given
         PostCreate request = PostCreate.builder()
@@ -59,7 +59,7 @@ class PostControllerTest {
     }
 
     @Test
-    @DisplayName("/posts 요청시 title값은 필수다.")
+    @DisplayName("/posts 요청시 title 값은 필수다.")
     void test2() throws Exception {
         // given
         PostCreate request = PostCreate.builder()
