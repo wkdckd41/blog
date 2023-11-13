@@ -74,10 +74,10 @@ class PostServiceTest {
     @DisplayName("글 1페이지 조회")
     void test3() {
         // given
-        List<Post> requestPosts = IntStream.range(0, 30)
+        List<Post> requestPosts = IntStream.range(1, 31)
                         .mapToObj(i -> Post.builder()
-                                .title("블로그 제목 - " + i)
-                                .content("미사신도시 - " + i)
+                                .title("블로그 제목 " + i)
+                                .content("미사신도시 " + i)
                                 .build())
                         .collect(Collectors.toList());
         postRepository.saveAll(requestPosts);
