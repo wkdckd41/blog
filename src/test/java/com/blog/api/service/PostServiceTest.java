@@ -82,11 +82,12 @@ class PostServiceTest {
                         .collect(Collectors.toList());
         postRepository.saveAll(requestPosts);
 
-
         // when
-        List<PostResponse> posts = postService.getList(1);
+        List<PostResponse> posts = postService.getList(0);
 
         // then
-        assertEquals(2L, posts.size());
+        assertEquals(5L, posts.size());
+        assertEquals("블로그 제목 30", posts.get(0).getTitle());
+        assertEquals("블로그 제목 26", posts.get(4).getTitle());
     }
 }
