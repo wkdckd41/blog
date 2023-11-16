@@ -6,14 +6,11 @@ import com.blog.api.request.PostCreate;
 import com.blog.api.response.PostResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @Slf4j
 @Service
@@ -43,8 +40,7 @@ public class PostService {
 
     }
 
-    public List<PostResponse> getList(Pageable page) {
-        Pageable pageable = PageRequest.of(0, 5, DESC, "id");
+    public List<PostResponse> getList(Pageable pageable) {
         return postRepository.findAll(pageable).stream()
                 .map(PostResponse::new)
                 .collect(Collectors.toList());
