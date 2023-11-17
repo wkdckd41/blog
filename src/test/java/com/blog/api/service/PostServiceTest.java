@@ -3,14 +3,13 @@ package com.blog.api.service;
 import com.blog.api.domain.Post;
 import com.blog.api.repository.PostRepository;
 import com.blog.api.request.PostCreate;
+import com.blog.api.request.PostSearch;
 import com.blog.api.response.PostResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +17,6 @@ import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @SpringBootTest
 class PostServiceTest {
@@ -77,7 +75,7 @@ class PostServiceTest {
     @DisplayName("글 1페이지 조회")
     void test3() {
         // given
-        List<Post> requestPosts = IntStream.range(1, 31)
+        List<Post> requestPosts = IntStream.range(0, 20)
                         .mapToObj(i -> Post.builder()
                                 .title("블로그 제목 " + i)
                                 .content("미사신도시 " + i)
@@ -85,14 +83,16 @@ class PostServiceTest {
                         .collect(Collectors.toList());
         postRepository.saveAll(requestPosts);
 
-        Pageable pageable = PageRequest.of(0, 5, DESC, "id");
+        PostSearch postSearch = PostSearch.builder()
+                .page(1)
+                .size(10)
+                .build();
 
         // when
-        List<PostResponse> posts = postService.getList(pageable);
+        List<PostResponse> posts = postService.getList(postSearch);
 
         // then
-        assertEquals(5L, posts.size());
-        assertEquals("블로그 제목 30", posts.get(0).getTitle());
-        assertEquals("블로그 제목 26", posts.get(4).getTitle());
+        assertEquals(10L, posts.size());
+        assertEquals("블로그 제목 19", posts.get(0).getTitle());
     }
 }
