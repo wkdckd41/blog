@@ -85,7 +85,6 @@ class PostServiceTest {
 
         PostSearch postSearch = PostSearch.builder()
                 .page(1)
-                .size(10)
                 .build();
 
         // when
