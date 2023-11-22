@@ -3,8 +3,10 @@ package com.blog.api.service;
 import com.blog.api.domain.Post;
 import com.blog.api.repository.PostRepository;
 import com.blog.api.request.PostCreate;
+import com.blog.api.request.PostEdit;
 import com.blog.api.request.PostSearch;
 import com.blog.api.response.PostResponse;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -72,7 +74,7 @@ class PostServiceTest {
     }
 
     @Test
-    @DisplayName("글 1페이지 조회")
+    @DisplayName("글 여러개 조회")
     void test3() {
         // given
         List<Post> requestPosts = IntStream.range(0, 20)
@@ -93,5 +95,30 @@ class PostServiceTest {
         // then
         assertEquals(10L, posts.size());
         assertEquals("블로그 제목 19", posts.get(0).getTitle());
+    }
+
+    @Test
+    @DisplayName("글 제목 수정")
+    void test4() {
+        // given
+        Post post = Post.builder()
+                .title("블로그 제목 ")
+                .content("미사신도시 ")
+                .build();
+
+        postRepository.save(post);
+
+        PostEdit postEdit = PostEdit.builder()
+                .title("블로그 제목 수정")
+                .build();
+
+
+        // when
+        postService.edit(post.getId(), postEdit);
+
+        // then
+        Post changePost = postRepository.findById(post.getId())
+                .orElseThrow(() -> new RuntimeException(",글이 존재하지 않습니다. id=" + post.getId()));
+        Assertions.assertEquals("블로그 제목 수정", changePost.getTitle());
     }
 }
