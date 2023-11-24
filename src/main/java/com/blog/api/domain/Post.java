@@ -1,15 +1,13 @@
 package com.blog.api.domain;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter
+@Setter
 public class Post {
 
     @Id
@@ -25,5 +23,10 @@ public class Post {
     public Post(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void toEditor() {
+        PostEditor.PostEditorBuilder builder = PostEditor.builder()
+                .title()
     }
 }

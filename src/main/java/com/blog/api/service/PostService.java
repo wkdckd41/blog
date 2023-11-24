@@ -51,7 +51,9 @@ public class PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
 
-        post.setTitle("");
-        post.setContent("");
+        post.setTitle(postEdit.getTitle());
+        post.setContent(postEdit.getContent());
+
+        postRepository.save(post);
     }
 }

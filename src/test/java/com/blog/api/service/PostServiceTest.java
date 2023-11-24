@@ -6,7 +6,6 @@ import com.blog.api.request.PostCreate;
 import com.blog.api.request.PostEdit;
 import com.blog.api.request.PostSearch;
 import com.blog.api.response.PostResponse;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -119,6 +118,6 @@ class PostServiceTest {
         // then
         Post changePost = postRepository.findById(post.getId())
                 .orElseThrow(() -> new RuntimeException(",글이 존재하지 않습니다. id=" + post.getId()));
-        Assertions.assertEquals("블로그 제목 수정", changePost.getTitle());
+        assertEquals("블로그 제목 수정", changePost.getTitle());
     }
 }
