@@ -186,7 +186,7 @@ class PostControllerTest {
 
         PostEdit postEdit = PostEdit.builder()
                 .title("블로그 제목 수정")
-                .content("교산신도시")
+                .content("미사신도시")
                 .build();
 
         // expected

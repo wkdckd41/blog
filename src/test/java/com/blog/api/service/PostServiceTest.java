@@ -138,6 +138,9 @@ class PostServiceTest {
                 .content("교산신도시")
                 .build();
 
+        //when
+        postService.edit(post.getId(), postEdit);
+
         // then
         Post changePost = postRepository.findById(post.getId())
                 .orElseThrow(() -> new RuntimeException(",글이 존재하지 않습니다. id=" + post.getId()));
