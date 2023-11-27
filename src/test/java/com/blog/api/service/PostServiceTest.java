@@ -146,4 +146,30 @@ class PostServiceTest {
                 .orElseThrow(() -> new RuntimeException(",글이 존재하지 않습니다. id=" + post.getId()));
         assertEquals("교산신도시", changePost.getContent());
     }
+
+    @Test
+    @DisplayName("글 내용 수정")
+    void test6() {
+        // given
+        Post post = Post.builder()
+                .title("블로그 제목")
+                .content("미사신도시")
+                .build();
+
+        postRepository.save(post);
+
+        PostEdit postEdit = PostEdit.builder()
+                .title(null)
+                .content("교산신도시")
+                .build();
+
+        //when
+        postService.edit(post.getId(), postEdit);
+
+        // then
+        Post changePost = postRepository.findById(post.getId())
+                .orElseThrow(() -> new RuntimeException(",글이 존재하지 않습니다. id=" + post.getId()));
+        assertEquals("블로그 제목", changePost.getTitle());
+        assertEquals("교산신도시", changePost.getContent());
+    }
 }

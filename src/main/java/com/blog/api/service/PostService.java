@@ -1,6 +1,7 @@
 package com.blog.api.service;
 
 import com.blog.api.domain.Post;
+import com.blog.api.domain.PostEditor;
 import com.blog.api.repository.PostRepository;
 import com.blog.api.request.PostCreate;
 import com.blog.api.request.PostEdit;
@@ -53,12 +54,12 @@ public class PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
 
-//        PostEditor.PostEditorBuilder editorBuilder = post.toEditor();
-//
-//        PostEditor postEditor = editorBuilder.title(postEdit.getTitle())
-//                .content(postEdit.getContent())
-//                .build();
+        PostEditor.PostEditorBuilder editorBuilder = post.toEditor();
 
-        post.edit(postEdit.getTitle(), postEdit.getContent());
+        PostEditor postEditor = editorBuilder.title(postEdit.getTitle())
+                .content(postEdit.getContent())
+                .build();
+
+        post.edit(postEditor);
     }
 }
