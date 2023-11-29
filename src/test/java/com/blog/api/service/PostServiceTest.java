@@ -77,11 +77,11 @@ class PostServiceTest {
     void test3() {
         // given
         List<Post> requestPosts = IntStream.range(0, 20)
-                        .mapToObj(i -> Post.builder()
-                                .title("블로그 제목 " + i)
-                                .content("미사신도시 " + i)
-                                .build())
-                        .collect(Collectors.toList());
+                .mapToObj(i -> Post.builder()
+                        .title("블로그 제목 " + i)
+                        .content("미사신도시 " + i)
+                        .build())
+                .collect(Collectors.toList());
         postRepository.saveAll(requestPosts);
 
         PostSearch postSearch = PostSearch.builder()
@@ -171,5 +171,24 @@ class PostServiceTest {
                 .orElseThrow(() -> new RuntimeException(",글이 존재하지 않습니다. id=" + post.getId()));
         assertEquals("블로그 제목", changePost.getTitle());
         assertEquals("교산신도시", changePost.getContent());
+    }
+
+    @Test
+    @DisplayName("게시글 삭제")
+    void test7() {
+        // given
+        Post post = Post.builder()
+                .title("블로그 제목 ")
+                .content("미사신도시 ")
+                .build();
+
+        postRepository.save(post);
+
+
+        // when
+        postService.delete(post.getId());
+
+        // then
+        assertEquals(0, postRepository.count());
     }
 }
