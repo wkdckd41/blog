@@ -1,6 +1,7 @@
 package com.blog.api.service;
 
 import com.blog.api.domain.Post;
+import com.blog.api.exception.PostNotFound;
 import com.blog.api.repository.PostRepository;
 import com.blog.api.request.PostCreate;
 import com.blog.api.request.PostEdit;
@@ -16,8 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class PostServiceTest {
@@ -190,5 +190,21 @@ class PostServiceTest {
 
         // then
         assertEquals(0, postRepository.count());
+    }
+
+    @Test
+    @DisplayName("글 1개 조회")
+    void test8() {
+        // given
+        Post post = Post.builder()
+                .title("블로그 제목")
+                .content("미사신도시")
+                .build();
+        postRepository.save(post);
+
+        // expected
+        assertThrows(PostNotFound.class, () -> {
+            postService.get(post.getId() + 1L);
+        });
     }
 }
