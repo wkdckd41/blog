@@ -207,4 +207,43 @@ class PostServiceTest {
             postService.get(post.getId() + 1L);
         });
     }
+
+    @Test
+    @DisplayName("게시글 삭제 - 존재하지 않는 글")
+    void test9() {
+        // given
+        Post post = Post.builder()
+                .title("블로그 제목 ")
+                .content("미사신도시 ")
+                .build();
+
+        postRepository.save(post);
+
+        // expected
+        assertThrows(PostNotFound.class, () -> {
+            postService.delete(post.getId() + 1L);
+        });
+    }
+
+    @Test
+    @DisplayName("글 내용 수정 - 존재하지 않는 글")
+    void test10() {
+        // given
+        Post post = Post.builder()
+                .title("블로그 제목 ")
+                .content("미사신도시 ")
+                .build();
+
+        postRepository.save(post);
+
+        PostEdit postEdit = PostEdit.builder()
+                .title("블로그 제목 수정")
+                .content("교산신도시")
+                .build();
+
+        // expected
+        assertThrows(PostNotFound.class, () -> {
+            postService.edit(post.getId() +1L, postEdit);
+        });
+    }
 }
