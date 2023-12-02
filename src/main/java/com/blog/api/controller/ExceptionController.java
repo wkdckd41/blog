@@ -1,5 +1,6 @@
 package com.blog.api.controller;
 
+import com.blog.api.exception.PostNotFound;
 import com.blog.api.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,18 @@ public class ExceptionController {
         for (FieldError fieldError : e.getFieldErrors()) {
             response.addValidation(fieldError.getField(), fieldError.getDefaultMessage());
         }
+        return response;
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(PostNotFound.class)
+    public ErrorResponse postNotFound(PostNotFound e) {
+        ErrorResponse response = ErrorResponse.builder()
+                .code("404")
+                .message(e.getMessage())
+                .build();
+
         return response;
     }
 }
