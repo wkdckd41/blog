@@ -221,9 +221,23 @@ class PostControllerTest {
         // expected
         mockMvc.perform(delete("/posts/{postId}", 1L)
                 .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isNotFound())
                 .andDo(print());
+    }
 
+    @Test
+    @DisplayName("존재하지 않는 게시글 수정")
+    void test10() throws Exception {
+        PostEdit postEdit = PostEdit.builder()
+                .title("블로그 제목 수정")
+                .content("미사신도시")
+                .build();
 
+        // expected
+        mockMvc.perform(patch("/posts/{postId}", 1L)
+                        .contentType(APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(postEdit)))
+                .andExpect(status().isNotFound())
+                .andDo(print());
     }
 }
