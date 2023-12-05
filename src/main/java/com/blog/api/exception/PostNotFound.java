@@ -1,6 +1,6 @@
 package com.blog.api.exception;
 
-public class PostNotFound extends RuntimeException{
+public class PostNotFound extends BlogException{
 
     private static final String MESSAGE = "존재하지 않는 글입니다.";
 

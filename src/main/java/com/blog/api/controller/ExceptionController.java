@@ -1,5 +1,6 @@
 package com.blog.api.controller;
 
+import com.blog.api.exception.BlogException;
 import com.blog.api.exception.PostNotFound;
 import com.blog.api.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -32,8 +33,8 @@ public class ExceptionController {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(PostNotFound.class)
-    public ErrorResponse postNotFound(PostNotFound e) {
+    @ExceptionHandler(BlogException.class)
+    public ErrorResponse blogException(PostNotFound e) {
         ErrorResponse response = ErrorResponse.builder()
                 .code("404")
                 .message(e.getMessage())

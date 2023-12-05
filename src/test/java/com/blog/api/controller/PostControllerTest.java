@@ -240,4 +240,23 @@ class PostControllerTest {
                 .andExpect(status().isNotFound())
                 .andDo(print());
     }
+
+    @Test
+    @DisplayName("게시글 작성시 제목에 '바보'는 포함될 수 없다.")
+    void test11() throws Exception {
+        // given
+        PostCreate request = PostCreate.builder()
+                .title("나는 바보입니다.")
+                .content("미사신도시")
+                .build();
+
+        String json = objectMapper.writeValueAsString(request);
+
+        // when
+        mockMvc.perform(post("/posts")
+                        .contentType(APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
 }
