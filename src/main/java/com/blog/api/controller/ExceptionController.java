@@ -1,10 +1,10 @@
 package com.blog.api.controller;
 
 import com.blog.api.exception.BlogException;
-import com.blog.api.exception.PostNotFound;
 import com.blog.api.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -32,13 +32,17 @@ public class ExceptionController {
     }
 
     @ResponseBody
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(BlogException.class)
-    public ErrorResponse blogException(PostNotFound e) {
-        ErrorResponse response = ErrorResponse.builder()
-                .code("404")
+    public ResponseEntity<ErrorResponse> blogException(BlogException e) {
+        int statusCode = e.getStatusCode();
+
+        ErrorResponse body = ErrorResponse.builder()
+                .code(String.valueOf(statusCode))
                 .message(e.getMessage())
                 .build();
+
+        ResponseEntity<ErrorResponse> response = ResponseEntity.status(statusCode)
+                .body(body);
 
         return response;
     }

@@ -7,4 +7,9 @@ public class InvalidRequest extends BlogException{
     public InvalidRequest() {
         super(MESSAGE);
     }
+
+    @Override
+    public int getStatusCode() {
+        return 400;
+    }
 }
