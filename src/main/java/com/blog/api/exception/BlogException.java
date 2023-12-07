@@ -20,7 +20,7 @@ public abstract class BlogException extends RuntimeException{
 
     public abstract int getStatusCode();
 
-    public addValidation(String fieldName, String message){
+    public void addValidation(String fieldName, String message){
         validation.put(fieldName, message);
 
     }
