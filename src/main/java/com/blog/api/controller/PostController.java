@@ -26,7 +26,7 @@ public class PostController {
     }
 
     @GetMapping("/posts/{postId}")
-    public PostResponse get(@PathVariable long postId) {
+    public PostResponse get(@PathVariable Long postId) {
         return postService.get(postId);
     }
 
@@ -35,7 +35,7 @@ public class PostController {
         return postService.getList(postSearch);
     }
 
-    @PatchMapping("posts/{postId}")
+    @PatchMapping("/posts/{postId}")
     public void edit(@PathVariable Long postId, @RequestBody @Valid PostEdit request) {
         postService.edit(postId, request);
     }
