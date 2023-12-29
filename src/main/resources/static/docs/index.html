@@ -448,6 +448,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_글_단건조회">글 단건조회</a>
 <ul class="sectlevel2">
 <li><a href="#_요청">요청</a></li>
+<li><a href="#_요청_파라미터">요청 파라미터</a></li>
 <li><a href="#_응답">응답</a></li>
 <li><a href="#_curl">CURL</a></li>
 </ul>
@@ -465,9 +466,31 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /posts/1 HTTP/1.1
 Accept: application/json
-Host: localhost:8080</code></pre>
+Host: api.blog.com</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_요청_파라미터">요청 파라미터</h3>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. /posts/{postId}</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>postId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">게시글 ID</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_응답">응답</h3>
@@ -485,7 +508,7 @@ Content-Length: 44
 <h3 id="_curl">CURL</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/posts/1' -i -X GET \
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'https://api.blog.com/posts/1' -i -X GET \
     -H 'Accept: application/json'</code></pre>
 </div>
 </div>
@@ -496,7 +519,7 @@ Content-Length: 44
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-12-27 23:44:53 +0900
+Last updated 2023-12-29 23:58:25 +0900
 </div>
 </div>
 </body>
