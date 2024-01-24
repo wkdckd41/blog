@@ -435,15 +435,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="book toc2 toc-left">
+<body class="article">
 <div id="header">
 <h1>블로그 API</h1>
 <div class="details">
 <span id="revnumber">version 0.0.1-SNAPSHOT</span>
 </div>
-<div id="toc" class="toc2">
+<div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_글_단건조회">글 단건조회</a>
@@ -463,13 +462,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_글_단건조회"><a class="link" href="#_글_단건조회">글 단건조회</a></h2>
+<h2 id="_글_단건조회">글 단건조회</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_요청"><a class="link" href="#_요청">요청</a></h3>
+<h3 id="_요청">요청</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">GET /posts/1 HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /posts/1 HTTP/1.1
 Accept: application/json
 Host: api.blog.com</code></pre>
 </div>
@@ -495,10 +494,10 @@ Host: api.blog.com</code></pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_응답"><a class="link" href="#_응답">응답</a></h3>
+<h3 id="_응답">응답</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 44
 
@@ -540,13 +539,13 @@ Content-Length: 44
 </div>
 </div>
 <div class="sect1">
-<h2 id="_글_작성"><a class="link" href="#_글_작성">글 작성</a></h2>
+<h2 id="_글_작성">글 작성</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_요청_2"><a class="link" href="#_요청_2">요청</a></h3>
+<h3 id="_요청_2">요청</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">POST /posts HTTP/1.1
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /posts HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
 Content-Length: 37
@@ -558,7 +557,7 @@ Host: api.blog.com
 <div class="literalblock">
 <div class="content">
 <pre>|===
-    |Path|Type|Description|Optional|Constraint</pre>
+    |Path|Type|Description|Optional</pre>
 </div>
 </div>
 <div class="literalblock">
@@ -566,22 +565,28 @@ Host: api.blog.com
 <pre>|title
 |String
 |제목
-|
-| 좋은제목 입력해주세요.
-|content
+|</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>|content
 |String
 |내용
-|Y
-|
-|===</pre>
+|Y</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>|===</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_응답_2"><a class="link" href="#_응답_2">응답</a></h3>
+<h3 id="_응답_2">응답</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code data-lang="http" class="language-http hljs">HTTP/1.1 200 OK</code></pre>
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK</code></pre>
 </div>
 </div>
 </div>
@@ -591,11 +596,8 @@ Host: api.blog.com
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2024-01-07 00:04:26 +0900
+Last updated 2024-01-03 23:50:12 +0900
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
 </body>
 </html>
